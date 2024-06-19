@@ -32,7 +32,7 @@ function executeCommand($command) {
 
         proc_close($process);
 
-        return $output;
+        return $output; 
     }
     return '';
 }
