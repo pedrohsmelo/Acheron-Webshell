@@ -13,9 +13,9 @@ if (!isset($_SESSION['authenticated'])) {
 
 function executeCommand($command) {
     $descriptorspec = array(
-       0 => array("pipe", "r"), 
-       1 => array("pipe", "w"),  
-       2 => array("pipe", "w")   
+       0 => array("pipe", "r"),
+       1 => array("pipe", "w"),
+       2 => array("pipe", "w")
     );
 
     $process = proc_open($command, $descriptorspec, $pipes, realpath('./'), array());
